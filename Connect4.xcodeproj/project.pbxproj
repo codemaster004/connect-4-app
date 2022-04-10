@@ -7,21 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC09CB192801C84F001979B5 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB182801C84F001979B5 /* WebSocket.swift */; };
+		DC09CB1A2801C84F001979B5 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB182801C84F001979B5 /* WebSocket.swift */; };
+		DC09CB1D2801FADD001979B5 /* SocketModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1C2801FADD001979B5 /* SocketModels.swift */; };
+		DC09CB1E2801FADD001979B5 /* SocketModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1C2801FADD001979B5 /* SocketModels.swift */; };
+		DC09CB2028021FB5001979B5 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1F28021FB5001979B5 /* RoomState.swift */; };
+		DC09CB2128021FB5001979B5 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1F28021FB5001979B5 /* RoomState.swift */; };
+		DC4926BB27F4219F000FAF5F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4926BA27F4219F000FAF5F /* Network.swift */; };
+		DC4926BC27F4219F000FAF5F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4926BA27F4219F000FAF5F /* Network.swift */; };
+		DC6C969227F251200091319C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C969127F251200091319C /* Home.swift */; };
+		DC6C969327F251200091319C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C969127F251200091319C /* Home.swift */; };
 		DC8475C227F2277400B78141 /* Connect4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8475B227F2277000B78141 /* Connect4App.swift */; };
 		DC8475C327F2277400B78141 /* Connect4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8475B227F2277000B78141 /* Connect4App.swift */; };
 		DC8475C427F2277400B78141 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8475B327F2277000B78141 /* ContentView.swift */; };
 		DC8475C527F2277400B78141 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8475B327F2277000B78141 /* ContentView.swift */; };
 		DC8475C627F2277400B78141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8475B427F2277400B78141 /* Assets.xcassets */; };
 		DC8475C727F2277400B78141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8475B427F2277400B78141 /* Assets.xcassets */; };
+		DC9C21B52800DDD4008A9358 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C21B42800DDD4008A9358 /* BoardView.swift */; };
+		DC9C21B62800DDD4008A9358 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C21B42800DDD4008A9358 /* BoardView.swift */; };
+		DC9C21BB2800E01A008A9358 /* GameViewIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C21BA2800E01A008A9358 /* GameViewIOS.swift */; };
+		DC9C21BD2800E02F008A9358 /* GameViewMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9C21BC2800E02F008A9358 /* GameViewMac.swift */; };
+		DCBB8F6D2800DA1B00BCC0D2 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8F6C2800DA1B00BCC0D2 /* GameState.swift */; };
+		DCBB8F6E2800DA1B00BCC0D2 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB8F6C2800DA1B00BCC0D2 /* GameState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC09CB182801C84F001979B5 /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		DC09CB1C2801FADD001979B5 /* SocketModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketModels.swift; sourceTree = "<group>"; };
+		DC09CB1F28021FB5001979B5 /* RoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomState.swift; sourceTree = "<group>"; };
+		DC4926BA27F4219F000FAF5F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		DC4926BD27F44E71000FAF5F /* Connect4--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Connect4--iOS--Info.plist"; sourceTree = "<group>"; };
+		DC6C969127F251200091319C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		DC8475B227F2277000B78141 /* Connect4App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect4App.swift; sourceTree = "<group>"; };
 		DC8475B327F2277000B78141 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC8475B427F2277400B78141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC8475B927F2277400B78141 /* Connect4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connect4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8475BF27F2277400B78141 /* Connect4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Connect4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8475C127F2277400B78141 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		DC9C21B42800DDD4008A9358 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		DC9C21BA2800E01A008A9358 /* GameViewIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewIOS.swift; sourceTree = "<group>"; };
+		DC9C21BC2800E02F008A9358 /* GameViewMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewMac.swift; sourceTree = "<group>"; };
+		DCBB8F6C2800DA1B00BCC0D2 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,9 +68,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC09CB172801C831001979B5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DC4926BA27F4219F000FAF5F /* Network.swift */,
+				DC09CB182801C84F001979B5 /* WebSocket.swift */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		DC09CB1B2801FAC8001979B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC09CB1C2801FADD001979B5 /* SocketModels.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		DC8475AC27F2277000B78141 = {
 			isa = PBXGroup;
 			children = (
+				DC4926BD27F44E71000FAF5F /* Connect4--iOS--Info.plist */,
 				DC8475B127F2277000B78141 /* Shared */,
 				DC8475C027F2277400B78141 /* macOS */,
 				DC8475BA27F2277400B78141 /* Products */,
@@ -54,8 +98,14 @@
 		DC8475B127F2277000B78141 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DC8475B227F2277000B78141 /* Connect4App.swift */,
-				DC8475B327F2277000B78141 /* ContentView.swift */,
+				DC09CB1B2801FAC8001979B5 /* Models */,
+				DC09CB172801C831001979B5 /* Network */,
+				DC9C21B72800DE1B008A9358 /* Views */,
+				DC9C21B32800DD9F008A9358 /* ViewModels */,
+				DC9C21B12800DD60008A9358 /* Shared */,
+				DC9C21B02800DD54008A9358 /* MacOS */,
+				DC9C21AF2800DD49008A9358 /* iOS */,
+				DC6C969127F251200091319C /* Home.swift */,
 				DC8475B427F2277400B78141 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -76,6 +126,48 @@
 				DC8475C127F2277400B78141 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		DC9C21AF2800DD49008A9358 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DC9C21BA2800E01A008A9358 /* GameViewIOS.swift */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		DC9C21B02800DD54008A9358 /* MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				DC9C21BC2800E02F008A9358 /* GameViewMac.swift */,
+			);
+			name = MacOS;
+			sourceTree = "<group>";
+		};
+		DC9C21B12800DD60008A9358 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DC8475B227F2277000B78141 /* Connect4App.swift */,
+				DC8475B327F2277000B78141 /* ContentView.swift */,
+				DC9C21B42800DDD4008A9358 /* BoardView.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		DC9C21B32800DD9F008A9358 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DCBB8F6C2800DA1B00BCC0D2 /* GameState.swift */,
+				DC09CB1F28021FB5001979B5 /* RoomState.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		DC9C21B72800DE1B008A9358 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +268,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9C21BB2800E01A008A9358 /* GameViewIOS.swift in Sources */,
+				DC09CB192801C84F001979B5 /* WebSocket.swift in Sources */,
+				DC09CB1D2801FADD001979B5 /* SocketModels.swift in Sources */,
 				DC8475C427F2277400B78141 /* ContentView.swift in Sources */,
+				DC09CB2028021FB5001979B5 /* RoomState.swift in Sources */,
+				DC6C969227F251200091319C /* Home.swift in Sources */,
+				DCBB8F6D2800DA1B00BCC0D2 /* GameState.swift in Sources */,
+				DC9C21B52800DDD4008A9358 /* BoardView.swift in Sources */,
+				DC4926BB27F4219F000FAF5F /* Network.swift in Sources */,
 				DC8475C227F2277400B78141 /* Connect4App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +286,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC8475C527F2277400B78141 /* ContentView.swift in Sources */,
+				DC09CB1A2801C84F001979B5 /* WebSocket.swift in Sources */,
+				DC09CB1E2801FADD001979B5 /* SocketModels.swift in Sources */,
+				DC6C969327F251200091319C /* Home.swift in Sources */,
+				DC09CB2128021FB5001979B5 /* RoomState.swift in Sources */,
+				DCBB8F6E2800DA1B00BCC0D2 /* GameState.swift in Sources */,
+				DC9C21B62800DDD4008A9358 /* BoardView.swift in Sources */,
+				DC4926BC27F4219F000FAF5F /* Network.swift in Sources */,
+				DC9C21BD2800E02F008A9358 /* GameViewMac.swift in Sources */,
 				DC8475C327F2277400B78141 /* Connect4App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +420,7 @@
 				DEVELOPMENT_TEAM = W2FD463PKM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Connect4--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -342,6 +451,7 @@
 				DEVELOPMENT_TEAM = W2FD463PKM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Connect4--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
