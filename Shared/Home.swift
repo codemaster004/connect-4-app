@@ -82,6 +82,7 @@ struct PlayerNameTag: View {
     
     let playerNum: Int
     let playerColor: String
+    let playerName: String
     
     var body: some View {
         HStack(spacing: 0) {
@@ -90,14 +91,15 @@ struct PlayerNameTag: View {
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color("CoinEmpty"))
                 
-                Text(String(gameState.playersWins[self.playerNum] ?? 0))
+                Text(String(gameState.playersWins[playerNum] ?? 0))
                     .font(.title2)
+                    .foregroundColor(Color.white)
             }
             .padding(.trailing)
             
-            Text(gameState.players[self.playerNum])
+            Text(playerName)
                 .font(.title2)
-                .foregroundColor(gameState.isPP(playerNum: playerNum) ? Color("BgColor") : Color.white)
+                .foregroundColor(Color.white)
         }
         .frame(maxWidth: 170, alignment: .leading)
         .padding(.vertical, 10)

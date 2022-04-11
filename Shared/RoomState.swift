@@ -8,17 +8,17 @@
 import SwiftUI
 
 class RoomState: ObservableObject {
-    @Published var players: [Player]!
+    @Published var players: [Player]?
     @Published var me: Player!
     @Published var boardState: Array<Array<Int>>!
     @Published var roomNumber: Int!
     
     func roomReady() -> Bool {
-        return self.players != nil && self.me != nil && self.boardState != nil && self.roomNumber != nil
+        return self.players != nil && self.me != nil && self.roomNumber != nil
     }
 }
 
-struct Player {
+struct Player: Encodable, Decodable, Equatable {
     var nick: String
     var number: Int
     var colorName: String

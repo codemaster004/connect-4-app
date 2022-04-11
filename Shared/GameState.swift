@@ -9,23 +9,24 @@ import SwiftUI
 
 class GameState: ObservableObject {
     @Published var board: Array<Array<Int>>!
-    @Published var players: Array<String>! = ["Player 1", "Player 2"]
-    @Published var playingPlayer: Int! = 1
-    @Published var playersWins: Dictionary<Int, Int>! = [0: 0, 1: 0]
+    @Published var players: Array<Player>! = []
+    @Published var playingPlayer: Player!
+    @Published var playersWins: Dictionary<Int, Int>! = [:]
     @Published var won: Bool!
     @Published var playedColumn: Int!
     
     func changePP() {
-        self.playingPlayer = self.playingPlayer == 1 ? 2 : 1
+//        self.playingPlayer.number = self.playingPlayer.number == 1 ? 2 : 1
     }
     
     func isPP(playerNum: Int) -> Bool {
-        return self.playingPlayer == playerNum + 1
+        return self.playingPlayer.number == playerNum + 1
     }
     
     func getPPColor(playerNum: Int) -> Color {
+        return Color("BgColor")
         let playerColors = ["Coin1", "Coin2"]
-        if self.playingPlayer == playerNum + 1 {
+        if self.playingPlayer.number == playerNum + 1 {
             return Color(playerColors[playerNum])
         } else {
             return Color("BgColor")
@@ -33,7 +34,7 @@ class GameState: ObservableObject {
     }
     
     func updateBoard(x: Int, y: Int) {
-        self.board[x][y] = self.playingPlayer
+        self.board[x][y] = self.playingPlayer.number
     }
     
     func resetBoard() {
@@ -47,18 +48,18 @@ class GameState: ObservableObject {
             [0, 0, 0, 0, 0, 0, 0]
         ]
         self.won = false
-        self.playingPlayer = Int.random(in: 1...2)
+//        self.playingPlayer = Int.random(in: 1...2)
     }
     
     func boardReady() -> Bool {
-        return self.board != nil && self.players != nil && self.playingPlayer != nil && self.playersWins != nil && self.won != nil
+        return self.board != nil && self.players != nil && self.playersWins != nil && self.won != nil
     }
     
     func updateWins() {
-        if self.playersWins != nil && self.playersWins[self.playingPlayer - 1] != nil {
-            self.playersWins[self.playingPlayer - 1]! += 1
+        if self.playersWins != nil && self.playersWins[self.playingPlayer.number - 1] != nil {
+            self.playersWins[self.playingPlayer.number - 1]! += 1
         } else {
-            self.playersWins[self.playingPlayer - 1] = 1
+            self.playersWins[self.playingPlayer.number - 1] = 1
         }
     }
 }

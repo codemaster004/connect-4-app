@@ -10,54 +10,20 @@ import SwiftUI
 
 class Network: ObservableObject {
     @Published var won: Bool!
+    @Published var roomStatus: RoomStatus!
     
-    func checkForWinner(board: Dictionary<Int, Array<Int>>, x: Int, y: Int) {
-        guard let url = URL(string: "http://127.0.0.1:5001/check_win") else { fatalError("Missing URL") }
-        
-        let json = RequestData(board: board, last_move: ["x": x, "y": y])
-        
-        let jsonData = try? JSONEncoder().encode(json)
+    func getRoomPlayers(roomNumber: Int) {
+        guard let url = URL(string: "http://127.0.0.1:8000/status/\(roomNumber)") else { fatalError("Missing URL") }
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonData
+        urlRequest.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else { return }
             
-            if let decodedData = try? JSONDecoder().decode(WonResponse.self, from: data) {
+            if let decodedData = try? JSONDecoder().decode(RoomStatus.self, from: data) {
                 DispatchQueue.main.async {
-                    self.won = decodedData.won
-                    print(self.won ?? false)
-                }
-
-                return
-            }
-
-            print("Fetch data: \(error?.localizedDescription ?? "Unknown Error")")
-        }.resume()
-    }
-    
-    func getAiPrediction(board: Array<Array<Int>>, depth: Int) {
-        guard let url = URL(string: "http://127.0.0.1:5001/check_win") else { fatalError("Missing URL") }
-        
-        let json = PredictRequestData(board: board, depth: depth)
-        
-        let jsonData = try? JSONEncoder().encode(json)
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpMethod = "POST"
-        urlRequest.httpBody = jsonData
-        
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data else { return }
-            
-            if let decodedData = try? JSONDecoder().decode(WonResponse.self, from: data) {
-                DispatchQueue.main.async {
-                    self.won = decodedData.won
-                    print(self.won ?? false)
+                    self.roomStatus = decodedData
                 }
 
                 return
@@ -80,4 +46,21 @@ struct PredictRequestData: Encodable {
 
 struct WonResponse: Decodable {
     var won: Bool
+}
+
+struct RoomStatus: Decodable, Equatable {
+    static func == (lhs: RoomStatus, rhs: RoomStatus) -> Bool {
+        if lhs.players.count != rhs.players.count {
+            return false
+        }
+        for i in 0..<lhs.players.count {
+            if lhs.players[i] != rhs.players[i] {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    var players: [Player]
 }

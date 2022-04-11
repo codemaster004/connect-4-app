@@ -10,8 +10,8 @@ import SwiftUI
 struct BoardView: View {
     
     @EnvironmentObject var gameState: GameState
-    
-    @StateObject private var game = GameSocket()
+    @EnvironmentObject var roomState: RoomState
+    @EnvironmentObject var game: GameSocket
     
     var body: some View {
         ZStack {
@@ -23,7 +23,8 @@ struct BoardView: View {
 //                            handleColumnChange(nColumn: Int(nColumn))
 //                            playerNo, columnNo
 //                            game.send()
-                            game.sendPlayerMove(playerNo: gameState.playingPlayer, columnNo: nColumn)
+                            
+//                            game.sendPlayerMove(player: gameState.playingPlayer, columnNo: nColumn)
                         })
                     }
                     Spacer()
@@ -41,7 +42,7 @@ struct BoardView: View {
                             .font(.title)
                             .bold()
                         
-                        Text("By: \(gameState.players[gameState.playingPlayer - 1])")
+                        Text("By: ME")
                         
                         Spacer()
                     }
@@ -50,12 +51,11 @@ struct BoardView: View {
                 .background(Color("BgColor").opacity(0.8))
             }
         }
-        .onAppear() { game.connect() }
         .onDisappear() { game.disconnect() }
         .onChange(of: game.playerMove) { actionTaken in
             if actionTaken != nil {
-                gameState.playingPlayer = actionTaken?.player ?? 0
-                handleColumnChange(nColumn: actionTaken?.column ?? 0)
+//                gameState.playingPlayer = actionTaken?.player.number ?? 0
+//                handleColumnChange(nColumn: actionTaken?.column ?? 0)
             }
         }
     }

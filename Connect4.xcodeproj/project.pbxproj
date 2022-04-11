@@ -13,6 +13,8 @@
 		DC09CB1E2801FADD001979B5 /* SocketModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1C2801FADD001979B5 /* SocketModels.swift */; };
 		DC09CB2028021FB5001979B5 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1F28021FB5001979B5 /* RoomState.swift */; };
 		DC09CB2128021FB5001979B5 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB1F28021FB5001979B5 /* RoomState.swift */; };
+		DC09CB23280313CD001979B5 /* RoomConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB22280313CD001979B5 /* RoomConnectView.swift */; };
+		DC09CB24280313CD001979B5 /* RoomConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09CB22280313CD001979B5 /* RoomConnectView.swift */; };
 		DC4926BB27F4219F000FAF5F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4926BA27F4219F000FAF5F /* Network.swift */; };
 		DC4926BC27F4219F000FAF5F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4926BA27F4219F000FAF5F /* Network.swift */; };
 		DC6C969227F251200091319C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C969127F251200091319C /* Home.swift */; };
@@ -35,6 +37,7 @@
 		DC09CB182801C84F001979B5 /* WebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		DC09CB1C2801FADD001979B5 /* SocketModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketModels.swift; sourceTree = "<group>"; };
 		DC09CB1F28021FB5001979B5 /* RoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomState.swift; sourceTree = "<group>"; };
+		DC09CB22280313CD001979B5 /* RoomConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomConnectView.swift; sourceTree = "<group>"; };
 		DC4926BA27F4219F000FAF5F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		DC4926BD27F44E71000FAF5F /* Connect4--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Connect4--iOS--Info.plist"; sourceTree = "<group>"; };
 		DC6C969127F251200091319C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		DC9C21B72800DE1B008A9358 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC09CB22280313CD001979B5 /* RoomConnectView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -269,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC9C21BB2800E01A008A9358 /* GameViewIOS.swift in Sources */,
+				DC09CB23280313CD001979B5 /* RoomConnectView.swift in Sources */,
 				DC09CB192801C84F001979B5 /* WebSocket.swift in Sources */,
 				DC09CB1D2801FADD001979B5 /* SocketModels.swift in Sources */,
 				DC8475C427F2277400B78141 /* ContentView.swift in Sources */,
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC8475C527F2277400B78141 /* ContentView.swift in Sources */,
+				DC09CB24280313CD001979B5 /* RoomConnectView.swift in Sources */,
 				DC09CB1A2801C84F001979B5 /* WebSocket.swift in Sources */,
 				DC09CB1E2801FADD001979B5 /* SocketModels.swift in Sources */,
 				DC6C969327F251200091319C /* Home.swift in Sources */,

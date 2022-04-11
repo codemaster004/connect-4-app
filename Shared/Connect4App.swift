@@ -11,14 +11,16 @@ import SwiftUI
 struct Connect4App: App {
     var network = Network()
     var gameState = GameState()
-//    var roomState = RoomState()
+    var roomState = RoomState()
+    var game = GameSocket()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(network)
                 .environmentObject(gameState)
-//                .environmentObject(roomState)
+                .environmentObject(roomState)
+                .environmentObject(game)
         }
     }
 }

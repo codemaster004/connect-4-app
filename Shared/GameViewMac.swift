@@ -25,7 +25,6 @@ struct GameView: View {
         }
         .frame(minWidth: 1000, idealWidth: getRect().width / 1.5, idealHeight: getRect().height - 180, alignment: .leading)
         .background(Color("BgColor").ignoresSafeArea())
-        .preferredColorScheme(.dark)
         .onAppear() {
             gameState.resetBoard()
             gameState.playingPlayer = 1

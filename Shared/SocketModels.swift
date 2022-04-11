@@ -17,18 +17,6 @@ struct SubmitAction: Encodable, Equatable {
     var message: String
 }
 
-// {
-//   "payload": {
-//     "type": "send_message",
-//     "action": {
-//       "player": 1,
-//       "column": 2
-//     },
-//     "message": "",
-//     "event": "MOVE"
-//   }
-// }
-
 struct ReceiveAction: Decodable {
     var payload: ReceiveContent
 }
@@ -41,6 +29,6 @@ struct ReceiveContent: Decodable {
 }
 
 struct MoveAction: Encodable, Decodable, Equatable {
-    var player: Int
+    var player: Player
     var column: Int
 }
