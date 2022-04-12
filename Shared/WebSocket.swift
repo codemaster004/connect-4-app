@@ -13,6 +13,7 @@ final class GameSocket: ObservableObject {
     
     @Published var playerMove: MoveAction?
     @Published var newPlayer: Player?
+    @Published var removedPlayer: Player?
     
     func connect(roomNumber: Int) {
         let url = URL(string: "ws://127.0.0.1:8000/ws/play/\(String(roomNumber))/")!
@@ -45,10 +46,9 @@ final class GameSocket: ObservableObject {
         guard let json = try? JSONEncoder().encode(action),
             let jsonString = String(data: json, encoding: .utf8)
         else {
-            print("Error encoding player move")
+            print("Error Encoding player move")
             return
         }
-        print("Action parsed")
         
         webSocketTask?.send(.string(jsonString)) { error in
             if let error = error {
@@ -62,19 +62,20 @@ final class GameSocket: ObservableObject {
             guard let data = text.data(using: .utf8),
                 let playerAction = try? JSONDecoder().decode(ReceiveAction.self, from: data)
             else {
+                print("Error Decoding player move")
                 return
             }
             
-//            let event = playerAction.payload.event
+            let playerEvent = playerAction.payload.event
+            print(playerEvent)
             
             DispatchQueue.main.async {
-//                print("Handling socket event")
-//                if event == "JOIN" {
-//                    print("Event: JOIN")
-//                    print(playerAction.payload.action.player)
+                if playerEvent == "JOIN" {
                     self.newPlayer = playerAction.payload.action.player
-//                    self.playerMove = playerAction.payload.action
-//                }
+                }
+                if playerEvent == "LEAVE" {
+                    self.removedPlayer = playerAction.payload.action.player
+                }
             }
         }
     }

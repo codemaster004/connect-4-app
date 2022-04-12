@@ -11,10 +11,17 @@ class RoomState: ObservableObject {
     @Published var players: [Player]?
     @Published var me: Player!
     @Published var boardState: Array<Array<Int>>!
-    @Published var roomNumber: Int!
+    @Published var roomNumber: Int! = 0
     
     func roomReady() -> Bool {
         return self.players != nil && self.me != nil && self.roomNumber != nil
+    }
+    
+    func reset() {
+        self.players = []
+        self.me = nil
+        self.boardState = []
+        self.roomNumber = 0
     }
 }
 

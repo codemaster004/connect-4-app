@@ -9,10 +9,10 @@ import SwiftUI
 import Combine
 
 struct RoomConnectView: View {
+    
     @EnvironmentObject var roomState: RoomState
     @EnvironmentObject var network: Network
-    
-    @StateObject private var game = GameSocket()
+    @EnvironmentObject var game: GameSocket
     
     @Binding var showSettings: Bool
     
@@ -20,6 +20,8 @@ struct RoomConnectView: View {
     @State var room: String = ""
     @State var color: String = ""
     @State var colours = ["Coin1", "Coin2", "Coin3"]
+    
+    @State var isRoomFull: Bool = false
     
     @FocusState private var isFocused: Bool
     
@@ -49,14 +51,18 @@ struct RoomConnectView: View {
                         let filtered = newValue.filter { "0123456789".contains($0) }
                         if filtered != newValue {
                             self.room = filtered
-//                            self.onRoomNumberCommitted()
                         }
                     }
                     .onChange(of: isFocused) { isFocused in
                         if !isFocused {
-//                            self.onRoomNumberCommitted()
+                            self.onRoomNumberEntered()
                         }
                     }
+                
+                if self.isRoomFull {
+                    Text("This room is full")
+                        .foregroundColor(Color.accentColor)
+                }
             }
             .padding(.horizontal)
             
@@ -94,14 +100,21 @@ struct RoomConnectView: View {
                     }
                 }
                 .onChange(of: network.roomStatus) { _ in
+                    self.colours = ["Coin1", "Coin2", "Coin3"]
                     for player in network.roomStatus.players {
                         self.colours = self.colours.filter { $0 != player.colorName}
                     }
                     
+                    if network.roomStatus.players.count >= 2 {
+                        self.isRoomFull = true
+                    } else {
+                        self.isRoomFull = false
+                    }
+
                     if self.colours.isEmpty {
                         print("Room is full")
                     }
-                    
+
                     self.roomState.players = network.roomStatus.players
                 }
             }
@@ -110,22 +123,18 @@ struct RoomConnectView: View {
             Spacer()
             
             Button {
-                let myPlayer = Player(nick: self.username, number: self.roomState.players?.count ?? 0, colorName: self.color)
+                if self.isRoomFull {
+                    return
+                }
                 
-                let joinAction = SubmitAction(
-                    event: "JOIN",
-                    action: MoveAction(
-                        player: myPlayer,
-                        column: 0
-                    ),
-                    message: ""
-                )
-                self.game.send(action: joinAction)
+                let playerNumber = (self.roomState.players?.count ?? 0) + 1
+                if self.username == "" {
+                    self.username = "Player \(playerNumber)"
+                }
                 
-                guard let roomNumber = Int(self.room) else { return }
-                self.roomState.roomNumber = roomNumber
-                
-                self.roomState.me = myPlayer
+                let myPlayer = Player(nick: self.username, number: playerNumber, colorName: self.color)
+                self.addPlayerToRoom(player: myPlayer)
+                self.updateRoomState(player: myPlayer)
                 
                 self.showSettings = false
             } label: {
@@ -140,19 +149,36 @@ struct RoomConnectView: View {
         }
         .foregroundColor(.white)
         .background(Color("BgColor"))
+        .onAppear() {
+            self.roomState.roomNumber = 0
+        }
     }
     
-    func onRoomNumberCommitted() {
+    private func onRoomNumberEntered() {
         guard let roomNumber = Int(room) else { return }
-        
+
         network.getRoomPlayers(roomNumber: roomNumber)
-        
+        game.connect(roomNumber: roomNumber)
+
         self.roomState.roomNumber = roomNumber
     }
+    
+    private func addPlayerToRoom(player: Player) {
+        let joinAction = SubmitAction(
+            event: "JOIN",
+            action: MoveAction(
+                player: player,
+                column: 0
+            ),
+            message: ""
+        )
+        self.game.send(action: joinAction)
+    }
+    
+    private func updateRoomState(player: Player) {
+        guard let roomNumber = Int(self.room) else { return }
+        self.roomState.roomNumber = roomNumber
+        
+        self.roomState.me = player
+    }
 }
-
-//struct RoomConnectView_Previews: PreviewProvider {
-//    static var previews: some View {
-//       RoomConnectView()
-//    }
-//}

@@ -9,16 +9,17 @@ import SwiftUI
 
 struct Home: View {
     
+    @State var inGame: Bool = false
+    
     var body: some View {
-//        GameView()
         NavigationView {
             ZStack {
                 Color("BgColor").edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     HStack {
-                        NavigationLink {
-                            GameView()
+                        NavigationLink(isActive: self.$inGame) {
+                            GameView(isActive: self.$inGame)
                         } label: {
                             VStack {
                                 Circle()
