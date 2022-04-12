@@ -81,9 +81,7 @@ struct PlayerNameTag: View {
     
     @EnvironmentObject var gameState: GameState
     
-    let playerNum: Int
-    let playerColor: String
-    let playerName: String
+    let player: Player
     
     var body: some View {
         HStack(spacing: 0) {
@@ -92,20 +90,20 @@ struct PlayerNameTag: View {
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color("CoinEmpty"))
                 
-                Text(String(gameState.playersWins[playerNum] ?? 0))
+                Text(String(gameState.playersWins[player.number] ?? 0))
                     .font(.title2)
                     .foregroundColor(Color.white)
             }
             .padding(.trailing)
             
-            Text(playerName)
+            Text(player.nick)
                 .font(.title2)
                 .foregroundColor(Color.white)
         }
         .frame(maxWidth: 170, alignment: .leading)
         .padding(.vertical, 10)
         .padding(.horizontal, 15)
-        .background(gameState.getPPColor(playerNum: playerNum))
+        .background(gameState.getPPColor(player: player))
         .cornerRadius(15)
     }
 }

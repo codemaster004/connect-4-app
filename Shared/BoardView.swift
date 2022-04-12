@@ -93,7 +93,6 @@ struct BoardView_Previews: PreviewProvider {
 
 struct Column: View {
     
-    @EnvironmentObject var network: Network
     @EnvironmentObject var gameState: GameState
     
     @State var currentColor = Color("BgColor")

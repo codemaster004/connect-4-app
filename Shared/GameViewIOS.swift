@@ -13,6 +13,7 @@ struct GameView: View {
     @EnvironmentObject var gameState: GameState
     @EnvironmentObject var roomState: RoomState
     @EnvironmentObject var game: GameSocket
+    @EnvironmentObject var network: Network
     
     @Binding var isActive: Bool
     
@@ -63,14 +64,14 @@ struct GameView: View {
             if self.orientation.isLandscape {
                 VStack(spacing: 20) {
                     ForEach(self.roomState.players ?? [], id: \.number) { player in
-                        PlayerNameTag(playerNum: player.number, playerColor: player.colorName, playerName: player.nick)
+                        PlayerNameTag(player: player)
                     }
                 }
                 .padding(.vertical)
             } else {
                 HStack(spacing: 20) {
                     ForEach(self.roomState.players ?? [], id: \.number) { player in
-                        PlayerNameTag(playerNum: player.number, playerColor: player.colorName, playerName: player.nick)
+                        PlayerNameTag(player: player)
                     }
                 }
                 .padding(.horizontal)
@@ -86,6 +87,12 @@ struct GameView: View {
             
             self.roomState.players = self.roomState.players?.filter { $0 != oldPlayer }
         }
+        .onChange(of: game.startingPlayer) { startingPlayer in
+            print(startingPlayer)
+            self.gameState.players = self.roomState.players
+            self.gameState.playingPlayer = startingPlayer
+            print(self.gameState)
+        }
     }
     
     @ViewBuilder
@@ -100,6 +107,7 @@ struct GameView: View {
                 self.game.send(action: leaveAction)
                 self.game.disconnect()
                 self.roomState.reset()
+                self.network.roomStatus.players = []
                 self.isActive = false
             }
             
@@ -108,7 +116,12 @@ struct GameView: View {
             }
             
             PlayerActionButton(text: "Play", iconName: "arrowtriangle.right.fill") {
+                guard let players = self.roomState.players else { return }
+                if players.count < 2 { return }
+                guard let startingPlayer = players.randomElement() else { return }
                 
+                let playAction = SubmitAction(event: "START", action: MoveAction(player: startingPlayer, column: 0), message: "")
+                self.game.send(action: playAction)
             }
             
             if self.orientation.isLandscape {

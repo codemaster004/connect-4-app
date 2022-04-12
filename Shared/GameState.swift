@@ -11,7 +11,7 @@ class GameState: ObservableObject {
     @Published var board: Array<Array<Int>>!
     @Published var players: Array<Player>! = []
     @Published var playingPlayer: Player!
-    @Published var playersWins: Dictionary<Int, Int>! = [:]
+    @Published var playersWins: Dictionary<String, Int>! = [:]
     @Published var won: Bool!
     @Published var playedColumn: Int!
     
@@ -23,14 +23,8 @@ class GameState: ObservableObject {
         return self.playingPlayer.number == playerNum + 1
     }
     
-    func getPPColor(playerNum: Int) -> Color {
-        return Color("BgColor")
-        let playerColors = ["Coin1", "Coin2"]
-        if self.playingPlayer.number == playerNum + 1 {
-            return Color(playerColors[playerNum])
-        } else {
-            return Color("BgColor")
-        }
+    func getPPColor(player: Player) -> Color {
+        return player == self.playingPlayer ? Color(player.colorName) : Color("BgColor")
     }
     
     func updateBoard(x: Int, y: Int) {
@@ -56,11 +50,11 @@ class GameState: ObservableObject {
     }
     
     func updateWins() {
-        if self.playersWins != nil && self.playersWins[self.playingPlayer.number - 1] != nil {
-            self.playersWins[self.playingPlayer.number - 1]! += 1
-        } else {
-            self.playersWins[self.playingPlayer.number - 1] = 1
-        }
+//        if self.playersWins != nil && self.playersWins[self.playingPlayer.number - 1] != nil {
+//            self.playersWins[self.playingPlayer.number - 1]! += 1
+//        } else {
+//            self.playersWins[self.playingPlayer.number - 1] = 1
+//        }
     }
 }
 

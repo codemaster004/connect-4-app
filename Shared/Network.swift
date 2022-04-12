@@ -23,6 +23,7 @@ class Network: ObservableObject {
             
             if let decodedData = try? JSONDecoder().decode(RoomStatus.self, from: data) {
                 DispatchQueue.main.async {
+                    print(decodedData)
                     self.roomStatus = decodedData
                 }
 

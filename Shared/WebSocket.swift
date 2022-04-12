@@ -14,13 +14,23 @@ final class GameSocket: ObservableObject {
     @Published var playerMove: MoveAction?
     @Published var newPlayer: Player?
     @Published var removedPlayer: Player?
+    @Published var startingPlayer: Player?
+    @Published var socketActive = false
+    
+    private var reconnectTries = 0
+    private var roomNumber = 0
     
     func connect(roomNumber: Int) {
+        print("Conecting")
         let url = URL(string: "ws://127.0.0.1:8000/ws/play/\(String(roomNumber))/")!
+        self.roomNumber = roomNumber
         print("Connecting to room \(roomNumber)") 
         webSocketTask = URLSession.shared.webSocketTask(with: url)
         webSocketTask?.receive(completionHandler: onReceive)
         webSocketTask?.resume()
+        DispatchQueue.main.async {
+            self.socketActive = true
+        }
     }
     
     func disconnect() {
@@ -31,9 +41,22 @@ final class GameSocket: ObservableObject {
         webSocketTask?.receive(completionHandler: onReceive)
         if case .success(let event) = incoming {
             onEvent(event: event)
+            
+            self.reconnectTries = 0
         }
         else if case .failure(let error) = incoming {
-            print("Error", error)
+            print("Some socket error:", error.localizedDescription)
+            self.disconnect()
+            
+            // TODO: change to time counting
+            if self.reconnectTries <= 10000 {
+                self.reconnectTries += 1
+                self.connect(roomNumber: self.roomNumber)
+            } else {
+                DispatchQueue.main.async {
+                    self.socketActive = false
+                }
+            }
         }
     }
     
@@ -75,6 +98,9 @@ final class GameSocket: ObservableObject {
                 }
                 if playerEvent == "LEAVE" {
                     self.removedPlayer = playerAction.payload.action.player
+                }
+                if playerEvent == "START" {
+                    self.startingPlayer = playerAction.payload.action.player
                 }
             }
         }
